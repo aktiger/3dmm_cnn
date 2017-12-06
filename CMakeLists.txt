@@ -6,8 +6,14 @@ SET(CMAKE_INSTALL_RPATH "${CMAKE_INSTALL_RPATH}:\$ORIGIN/../bin:\$ORIGIN")
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin/)
 
 # DEFINE PATH TO YOUR THIRD PARTY LIBs
-set (DLIB_INCLUDE_DIR "/home/anh/Downloads/dlib-19.4")
-set (DLIB_LIB_DIR "/home/anh/Downloads/dlib-19.4/shared_build/dlib")
+set (DLIB_INCLUDE_DIR "/home/ubuntu/cvs/dlib-19.4/")
+set (DLIB_LIB_DIR "/home/ubuntu/cvs/dlib-19.4/build/dlib")
+set (CUDA_USE_STATIC_CUDA_RUNTIME OFF)
+
+#include(/home/ubuntu/cvs/dlib-19.7/dlib/cmake)
+#find_package(dlib REQUIRED)
+#include_directories(${DLIB_INCLUDE_DIRS})
+
 
 # OpenCV
 if(UNIX)
@@ -23,7 +29,14 @@ if(UNIX)
 
 	INCLUDE_DIRECTORIES(${Boost_INCLUDE_DIRS})
 	INCLUDE_DIRECTORIES(${Boost_INCLUDE_DIRS}/boost)
+
+	INCLUDE_DIRECTORIES(${DLIB_INCLUDE_DIR})
+
 	LINK_DIRECTORIES(${Boost_LIBRARY_DIRS})	
+
+	LINK_DIRECTORIES(${DLIB_LIB_DIR})
+
+
 endif(UNIX)
 
 if (${CMAKE_CXX_COMPILER_ID} STREQUAL "GNU")
